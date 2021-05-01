@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <properties>
+        <property name ="basePath">C:\Users\evson\IdeaProjects\AmazonProject\logs</property>
+    </properties>
+    <Appenders>
+
+        <RollingFile name="fileLogger" fileName="${basePath}/app-info.log" filePattern="${basePath}/app-info-%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+
+        
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!--<Logger name="com.foo.Bar" level="trace">
+            <AppenderRef ref="Console"/>
+        </Logger> -->
+        <Root level="all">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="fileLogger" level="info"/>
+        </Root>
+    </Loggers>
+</Configuration>
